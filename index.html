@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-platform="ios">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RadScan: your SDS200 on iPhone and iPad</title>
+<title>RadScan: your SDS200 on iPhone, iPad and Android</title>
 <meta name="description" content="Listen to your Uniden SDS200 anywhere in the house, control it from the couch, and see what it's hearing. Free for 5 days, then one purchase. No subscription.">
 <meta name="theme-color" content="#0b0b0c">
 <meta property="og:type" content="website">
-<meta property="og:title" content="RadScan: your SDS200 on iPhone and iPad">
+<meta property="og:title" content="RadScan: your SDS200 on iPhone, iPad and Android">
 <meta property="og:description" content="Live audio, remote control, a waterfall and more for the Uniden SDS200. No hub, no account, no cloud.">
 <meta property="og:url" content="https://sadkins0101.github.io/radscan/">
 <meta property="og:image" content="https://sadkins0101.github.io/radscan/img/og.jpg">
@@ -15,10 +15,28 @@
 <link rel="icon" type="image/png" href="img/favicon-64.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" as="image" href="img/iphone-01-listening.webp">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+/* Which app the page shows: iPhone and iPad unless asked for Android. "?android" or "?ios" in the address
+   decides (the link to give from Google Play is https://sadkins0101.github.io/radscan/?android); otherwise the
+   choice made here before; otherwise an Android phone or tablet gets Android. */
+(function () {
+  var root = document.documentElement, q = location.search.toLowerCase(), p = null;
+  root.classList.add('js');
+  if (/[?&]android\b/.test(q)) p = 'android'; else if (/[?&]ios\b/.test(q)) p = 'ios';
+  if (!p) { try { p = localStorage.getItem('radscan.platform'); } catch (e) {} }
+  if (p !== 'android' && p !== 'ios') p = /android/i.test(navigator.userAgent) ? 'android' : 'ios';
+  root.setAttribute('data-platform', p);
+})();
+</script>
 <!--
-  STORE LINK: once RadScan is live, turn both "Coming soon to the App Store" buttons (marked data-store)
-  into links to the App Store page, and change their words to "Download on the App Store".
+  ONE PAGE, TWO APPS: everything marked class="only-ios" shows for iPhone and iPad (the default), everything
+  marked class="only-android" shows when Android is chosen (the switch in the bar, or "?android" in the address).
+  A link with data-android="..." goes there instead when Android is chosen (the support and privacy pages).
+  The Android screenshots are img/android-*.webp.
+
+  STORE LINKS: once RadScan is live, turn the "Coming soon to the App Store" buttons (marked data-store="ios")
+  into links to the App Store page, with the words "Download on the App Store"; and the "Coming soon to Google
+  Play" buttons (data-store="android") into links to the Play page, with the words "Get it on Google Play".
 -->
 <style>
 /* Tokens: the app icon's orange on near-black, white type. One theme for the whole page (dark), matching the
@@ -45,6 +63,8 @@
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 *, *::before, *::after { box-sizing: border-box; }
+/* One page, two apps: only the chosen one's parts show. */
+html[data-platform="ios"] .only-android, html[data-platform="android"] .only-ios { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
@@ -102,6 +122,15 @@ p { margin: 0; }
 .nav-links { display: flex; gap: 26px; margin-left: auto; font-size: 15px; }
 .nav-links a { color: var(--muted); }
 .nav-links a:hover { color: var(--text); text-decoration: none; }
+/* The iPhone and iPad | Android switch */
+.platform { display: flex; margin-left: auto; padding: 3px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+.platform button { appearance: none; border: 0; cursor: pointer; background: none; color: var(--muted); white-space: nowrap;
+  font: 600 14px/1 var(--sans); min-height: 34px; padding: 0 14px; border-radius: 999px;
+  transition: background-color .25s var(--ease), color .25s var(--ease); }
+.platform button:hover { color: var(--text); }
+.platform button[aria-pressed="true"] { background: var(--orange); color: var(--ink); }
+.platform .short { display: none; }
+.platform + .nav-links { margin-left: 0; }
 
 /* Hero */
 .hero { position: relative; padding: 56px 0 72px; overflow: clip; }
@@ -168,7 +197,7 @@ p { margin: 0; }
 .site .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; }
 .site-art { display: flex; gap: 22px; justify-content: center; align-items: flex-start; }
 .site-art .phone { width: min(250px, 46%); }
-.site-art .phone:last-child { margin-top: 72px; }
+.site-art .phone:nth-child(even) { margin-top: 72px; }
 .site .body { margin-top: 20px; }
 .site ul { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; max-width: 46ch; }
 .site li { padding-left: 18px; border-left: 2px solid var(--orange); color: var(--muted); }
@@ -218,6 +247,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
 /* Tablet */
 @media (max-width: 960px) {
   .nav-links a:not(.keep) { display: none; }
+  .nav .wrap { gap: 16px; }
   .hero .wrap, .site .wrap, .ipad-sec .wrap, .price .wrap, .needs .wrap { grid-template-columns: 1fr; gap: 48px; }
   .hero .wrap { min-height: 0; }
   .hero-art { margin: 0 auto; width: min(440px, 100%); }
@@ -234,6 +264,11 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
 @media (max-width: 640px) {
   body { font-size: 17px; }
   .wrap { width: calc(100% - 32px); }
+  .platform .long { display: none; }
+  .platform .short { display: inline; }
+  .platform button { padding: 0 10px; }
+  .brand { font-size: 17px; }
+  .nav .wrap { gap: 10px; }
   .hero { padding-top: 36px; }
   .ctas .btn { width: 100%; }
   .statement, .features, .waterfall, .site, .ipad-sec, .price, .needs { padding-block: 80px; }
@@ -241,9 +276,11 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
   .c-listen, .c-program, .c-control, .c-activity, .c-record { grid-column: auto; }
   .c-program { grid-template-columns: 1fr; gap: 24px; }
   .cell { padding: 26px; }
-  .site-art .phone:last-child { margin-top: 48px; }
+  .site-art .phone:nth-child(even) { margin-top: 48px; }
   footer .wrap { grid-template-columns: 1fr; }
 }
+/* The narrowest phones: the bar keeps the icon, the switch and Support. */
+@media (max-width: 400px) { .brand { font-size: 0; gap: 0; } }
 </style>
 </head>
 <body>
@@ -252,12 +289,17 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="./"><img src="img/icon-128.png" alt="" width="32" height="32">RadScan</a>
+    <div class="platform" role="group" aria-label="Which app to show">
+      <button type="button" data-platform-set="ios" aria-pressed="true"><span class="long">iPhone &amp; iPad</span><span class="short">iOS</span></button>
+      <button type="button" data-platform-set="android" aria-pressed="false">Android</button>
+    </div>
     <nav class="nav-links" aria-label="Sections">
       <a href="#features">Features</a>
       <a href="#waterfall">Waterfall</a>
-      <a href="#ipad">iPad</a>
+      <a href="#ipad" class="only-ios">iPad</a>
+      <a href="#ipad" class="only-android">Tablets</a>
       <a href="#pricing">Pricing</a>
-      <a class="keep" href="support.html">Support</a>
+      <a class="keep" href="support.html" data-android="support-android.html">Support</a>
     </nav>
   </div>
 </header>
@@ -270,13 +312,16 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         <h1 class="reveal">Your SDS200, <span class="accent">in your pocket.</span></h1>
         <p class="lede reveal" style="--d:1">Listen anywhere in the house, control it from the couch, and see what it's hearing. Straight over your own network.</p>
         <div class="ctas reveal" style="--d:2">
-          <a class="btn btn-primary" href="#pricing" data-store>Coming soon to the App Store</a>
+          <a class="btn btn-primary only-ios" href="#pricing" data-store="ios">Coming soon to the App Store</a>
+          <a class="btn btn-primary only-android" href="#pricing" data-store="android">Coming soon to Google Play</a>
           <a class="btn btn-ghost" href="#features">See what it does</a>
         </div>
       </div>
       <div class="hero-art reveal" style="--d:2">
-        <figure class="phone phone-back"><img src="img/iphone-02-waterfall.webp" width="780" height="1694" alt="RadScan's Waterfall on iPhone, with CB channels 9 and 19 on the air and named."></figure>
-        <figure class="phone phone-front"><img src="img/iphone-01-listening.webp" width="780" height="1694" alt="RadScan's Scanner tab on iPhone, listening to Police Dispatch on a trunked P25 system, with hold keys and Record now."></figure>
+        <figure class="phone phone-back only-ios"><img src="img/iphone-02-waterfall.webp" width="780" height="1694" alt="RadScan's Waterfall on iPhone, with CB channels 9 and 19 on the air and named."></figure>
+        <figure class="phone phone-front only-ios"><img src="img/iphone-01-listening.webp" width="780" height="1694" alt="RadScan's Scanner tab on iPhone, listening to Police Dispatch on a trunked P25 system, with hold keys and Record now."></figure>
+        <figure class="phone phone-back only-android"><img src="img/android-02-waterfall.webp" width="780" height="1751" loading="lazy" alt="RadScan's Waterfall on an Android phone, with CB channels 9 and 19 on the air and named."></figure>
+        <figure class="phone phone-front only-android"><img src="img/android-01-listening.webp" width="780" height="1751" loading="lazy" alt="RadScan's Scanner tab on an Android phone, listening to Police Dispatch on a trunked P25 system, with hold keys and Record now."></figure>
       </div>
     </div>
   </section>
@@ -294,25 +339,31 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <div class="bento">
         <article class="cell c-listen reveal">
           <h3>Listen anywhere in the house.</h3>
-          <p>Stream your scanner's audio to iPhone or iPad, with the screen locked. Noise and hiss reduction, an equalizer and automatic leveling make rough channels easier to follow.</p>
-          <ul class="chips" aria-label="Where you can listen">
+          <p>Stream your scanner's audio to <span class="only-ios">iPhone or iPad</span><span class="only-android">your Android phone or tablet</span>, with the screen locked. Noise and hiss reduction, an equalizer and automatic leveling make rough channels easier to follow.</p>
+          <ul class="chips only-ios" aria-label="Where you can listen">
             <li>Lock Screen</li><li>Live Activity</li><li>AirPods</li><li>CarPlay</li><li>Noise reduction</li><li>Equalizer</li>
+          </ul>
+          <ul class="chips only-android" aria-label="Where you can listen">
+            <li>Lock screen</li><li>Media notification</li><li>Bluetooth earbuds</li><li>Android Auto</li><li>Noise reduction</li><li>Equalizer</li>
           </ul>
         </article>
         <article class="cell c-control reveal" style="--d:1">
           <h3>Every key you reach for.</h3>
           <p>Hold on a system, department or channel. Skip, avoid, step back and forward. Set volume and squelch. Switch favorites lists, or change everything at once with scan profiles.</p>
-          <div class="peek"><div class="frame"><img src="img/iphone-07-favorites.webp" width="780" height="1694" loading="lazy" alt="Favorites in RadScan: scan profiles and favorites lists with their on and off switches."></div></div>
+          <div class="peek only-ios"><div class="frame"><img src="img/iphone-07-favorites.webp" width="780" height="1694" loading="lazy" alt="Favorites in RadScan: scan profiles and favorites lists with their on and off switches."></div></div>
+          <div class="peek only-android"><div class="frame"><img src="img/android-07-favorites.webp" width="780" height="1751" loading="lazy" alt="Favorites in RadScan for Android: scan profiles and favorites lists with their on and off switches."></div></div>
         </article>
         <article class="cell c-activity reveal">
           <h3>Every transmission, as it happens.</h3>
           <p>The Activity log shows each call with its talkgroup and unit ID. Get an alert when the channels you pick come on the air.</p>
-          <div class="peek"><div class="frame"><img src="img/iphone-05-activity.webp" width="780" height="1694" loading="lazy" alt="RadScan's Activity log, listing recent calls with talkgroups, unit IDs and frequencies."></div></div>
+          <div class="peek only-ios"><div class="frame"><img src="img/iphone-05-activity.webp" width="780" height="1694" loading="lazy" alt="RadScan's Activity log, listing recent calls with talkgroups, unit IDs and frequencies."></div></div>
+          <div class="peek only-android"><div class="frame"><img src="img/android-05-activity.webp" width="780" height="1751" loading="lazy" alt="RadScan's Activity log on Android, listing recent calls with talkgroups, unit IDs and frequencies."></div></div>
         </article>
         <article class="cell c-record reveal" style="--d:1">
           <h3>Record now.</h3>
           <p>Something worth keeping? Record now saves what you're hearing from the start of the call. Or record every transmission automatically.</p>
-          <div class="peek"><div class="frame"><img src="img/iphone-06-record-now.webp" width="780" height="1694" loading="lazy" alt="A Record now recording in RadScan, opened to the three calls it caught."></div></div>
+          <div class="peek only-ios"><div class="frame"><img src="img/iphone-06-record-now.webp" width="780" height="1694" loading="lazy" alt="A Record now recording in RadScan, opened to the three calls it caught."></div></div>
+          <div class="peek only-android"><div class="frame"><img src="img/android-06-record-now.webp" width="780" height="1751" loading="lazy" alt="A Record now recording in RadScan for Android, opened to the calls it caught."></div></div>
         </article>
         <article class="cell c-program reveal">
           <div>
@@ -334,8 +385,10 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <p class="body reveal" style="--d:1">A live picture of everything on a band. Tap a signal to tune to it, magnify to fine-tune, see station names, and save what you find.</p>
       <p class="note reveal" style="--d:2">Needs Uniden's Waterfall upgrade on the scanner. Try it any time on the Virtual Scanner.</p>
       <div class="wf reveal">
-        <figure class="wf-wide"><img src="img/waterfall-wide.webp" width="1800" height="1344" loading="lazy" alt="RadScan's waterfall on iPad: the CB band at 27 MHz, with Channel 9 and Channel 19 on the air and labeled."></figure>
-        <figure class="phone"><img src="img/iphone-02-waterfall.webp" width="780" height="1694" loading="lazy" alt="The same waterfall on iPhone."></figure>
+        <figure class="wf-wide only-ios"><img src="img/waterfall-wide.webp" width="1800" height="1344" loading="lazy" alt="RadScan's waterfall on iPad: the CB band at 27 MHz, with Channel 9 and Channel 19 on the air and labeled."></figure>
+        <figure class="phone only-ios"><img src="img/iphone-02-waterfall.webp" width="780" height="1694" loading="lazy" alt="The same waterfall on iPhone."></figure>
+        <figure class="wf-wide only-android"><img src="img/android-waterfall-wide.webp" width="1800" height="1125" loading="lazy" alt="RadScan's waterfall on an Android tablet: the CB band at 27 MHz, with Channel 9 and Channel 19 on the air and labeled."></figure>
+        <figure class="phone only-android"><img src="img/android-02-waterfall.webp" width="780" height="1751" loading="lazy" alt="The same waterfall on an Android phone."></figure>
       </div>
     </div>
   </section>
@@ -343,8 +396,10 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
   <section class="site">
     <div class="wrap">
       <div class="site-art reveal">
-        <figure class="phone"><img src="img/iphone-04-map.webp" width="780" height="1694" loading="lazy" alt="Site map in RadScan: the site's range, departments and repeaters, colored by what's on the air."></figure>
-        <figure class="phone"><img src="img/iphone-03-trunk-activity.webp" width="780" height="1694" loading="lazy" alt="Trunk Activity in RadScan: talkgroups and units on the air right now."></figure>
+        <figure class="phone only-ios"><img src="img/iphone-04-map.webp" width="780" height="1694" loading="lazy" alt="Site map in RadScan: the site's range, departments and repeaters, colored by what's on the air."></figure>
+        <figure class="phone only-ios"><img src="img/iphone-03-trunk-activity.webp" width="780" height="1694" loading="lazy" alt="Trunk Activity in RadScan: talkgroups and units on the air right now."></figure>
+        <figure class="phone only-android"><img src="img/android-04-map.webp" width="780" height="1751" loading="lazy" alt="Site map in RadScan for Android: the scanner's range, departments and repeaters, colored by what's on the air."></figure>
+        <figure class="phone only-android"><img src="img/android-03-trunk-activity.webp" width="780" height="1751" loading="lazy" alt="Trunk Activity in RadScan for Android: talkgroups and units on the air right now."></figure>
       </div>
       <div>
         <h2 class="reveal">Know who's on the air.</h2>
@@ -360,10 +415,12 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
   <section class="ipad-sec" id="ipad">
     <div class="wrap">
       <div>
-        <h2 class="reveal">Made for iPad, too.</h2>
-        <p class="body reveal" style="--d:1">One console screen with scanning, the map, activity and recordings side by side, and keyboard shortcuts for the keys you use most. The waterfall and Trunk Activity get the whole screen.</p>
+        <h2 class="reveal">Made for <span class="only-ios">iPad</span><span class="only-android">tablets</span>, too.</h2>
+        <p class="body reveal only-ios" style="--d:1">One console screen with scanning, the map, activity and recordings side by side, and keyboard shortcuts for the keys you use most. The waterfall and Trunk Activity get the whole screen.</p>
+        <p class="body reveal only-android" style="--d:1">On an Android tablet, one console screen with scanning, the map, activity and recordings side by side. The waterfall and Trunk Activity get the whole screen.</p>
       </div>
-      <figure class="ipad reveal" style="--d:1"><img src="img/ipad-console.webp" width="1300" height="1734" loading="lazy" alt="RadScan's console on iPad: Fire/EMS Dispatch on the air, the map with its range, Activity and Recordings on one screen."></figure>
+      <figure class="ipad reveal only-ios" style="--d:1"><img src="img/ipad-console.webp" width="1300" height="1734" loading="lazy" alt="RadScan's console on iPad: Fire/EMS Dispatch on the air, the map with its range, Activity and Recordings on one screen."></figure>
+      <figure class="ipad reveal only-android" style="--d:1"><img src="img/android-tablet-console.webp" width="1300" height="2080" loading="lazy" alt="RadScan's console on an Android tablet: Sheriff Dispatch on the air, the map with its range, Activity and Recordings on one screen."></figure>
     </div>
   </section>
 
@@ -371,10 +428,11 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
     <div class="wrap">
       <div>
         <h2 class="reveal">Free for 5 days.<br>Then $29.99, once.</h2>
-        <p class="terms reveal" style="--d:1">Every feature works during the trial. After that, one purchase unlocks RadScan for good, on your iPhone and iPad.</p>
+        <p class="terms reveal" style="--d:1">Every feature works during the trial. After that, one purchase unlocks RadScan for good, on your <span class="only-ios">iPhone and iPad</span><span class="only-android">Android phone and tablet</span>.</p>
         <p class="nos reveal" style="--d:2">No subscription. No ads. No tracking.</p>
         <div class="ctas reveal" style="--d:3">
-          <span class="btn btn-dark" data-store><img class="glyph" src="img/icon-128.png" alt="">Coming soon to the App Store</span>
+          <span class="btn btn-dark only-ios" data-store="ios"><img class="glyph" src="img/icon-128.png" alt="">Coming soon to the App Store</span>
+          <span class="btn btn-dark only-android" data-store="android"><img class="glyph" src="img/icon-128.png" alt="">Coming soon to Google Play</span>
         </div>
       </div>
       <aside class="virtual reveal" style="--d:2">
@@ -390,15 +448,16 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         <h2 class="reveal">What you need.</h2>
         <ul>
           <li class="reveal" style="--d:1"><strong>A Uniden SDS200</strong> connected to your network by Ethernet.</li>
-          <li class="reveal" style="--d:2"><strong>An iPhone or iPad</strong> with iOS 18 or later, on the same network.</li>
+          <li class="reveal only-ios" style="--d:2"><strong>An iPhone or iPad</strong> with iOS 18 or later, on the same network.</li>
+          <li class="reveal only-android" style="--d:2"><strong>An Android phone or tablet</strong> with Android 10 or later, on the same network.</li>
           <li class="reveal" style="--d:3"><strong>For the waterfall:</strong> Uniden's Waterfall upgrade on the scanner.</li>
         </ul>
       </div>
       <div class="side">
         <h3 class="reveal">Nothing to sign up for.</h3>
-        <p class="reveal" style="--d:1">No account, no analytics, no tracking. RadScan doesn't collect anything about you. <a href="privacy.html">Read the privacy policy</a>.</p>
+        <p class="reveal" style="--d:1">No account, no analytics, no tracking. RadScan doesn't collect anything about you. <a href="privacy.html" data-android="privacy-android.html">Read the privacy policy</a>.</p>
         <h3 class="reveal">Questions?</h3>
-        <p class="reveal" style="--d:1">The <a href="support.html">support page</a> covers setup and the common snags, or write to <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>.</p>
+        <p class="reveal" style="--d:1">The <a href="support.html" data-android="support-android.html">support page</a> covers setup and the common snags, or write to <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>.</p>
         <p class="reveal" style="--d:2">Laws on listening and recording vary by place. Use RadScan responsibly.</p>
       </div>
     </div>
@@ -410,17 +469,38 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
   <div class="wrap">
     <div>
       <a class="brand" href="./"><img src="img/icon-128.png" alt="" width="32" height="32">RadScan</a>
-      <p class="legal">RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are trademarks of their owner. Apple, iPhone, iPad, AirPods, CarPlay and App Store are trademarks of Apple Inc.</p>
+      <p class="legal">RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are trademarks of their owner. <span class="only-ios">Apple, iPhone, iPad, AirPods, CarPlay and App Store are trademarks of Apple Inc.</span><span class="only-android">Google Play, Android and Android Auto are trademarks of Google LLC.</span></p>
     </div>
     <nav aria-label="Footer">
-      <a href="support.html">Support</a>
-      <a href="privacy.html">Privacy Policy</a>
+      <a href="support.html" data-android="support-android.html">Support</a>
+      <a href="privacy.html" data-android="privacy-android.html">Privacy Policy</a>
       <a href="mailto:radscan@enetworx.net">Contact</a>
     </nav>
   </div>
 </footer>
 
 <script>
+/* The switch: shows the other app's parts, points the support and privacy links at its pages, remembers the
+   choice, and puts it in the address so the page can be linked to either way. */
+(function () {
+  var root = document.documentElement;
+  var links = document.querySelectorAll('a[data-android]');
+  links.forEach(function (a) { a.setAttribute('data-ios', a.getAttribute('href')); });
+  function show(p, byHand) {
+    root.setAttribute('data-platform', p);
+    links.forEach(function (a) { a.setAttribute('href', a.getAttribute(p === 'android' ? 'data-android' : 'data-ios')); });
+    document.querySelectorAll('[data-platform-set]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-platform-set') === p));
+    });
+    if (!byHand) return;
+    try { localStorage.setItem('radscan.platform', p); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname + '?' + p + location.hash); } catch (e) {}
+  }
+  document.querySelectorAll('[data-platform-set]').forEach(function (b) {
+    b.addEventListener('click', function () { show(b.getAttribute('data-platform-set'), true); });
+  });
+  show(root.getAttribute('data-platform') === 'android' ? 'android' : 'ios', false);
+})();
 (function () {
   var items = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); return; }
