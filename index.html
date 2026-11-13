@@ -34,9 +34,10 @@
   A link with data-android="..." goes there instead when Android is chosen (the support and privacy pages).
   The Android screenshots are img/android-*.webp.
 
-  STORE LINKS: once RadScan is live, turn the "Coming soon to the App Store" buttons (marked data-store="ios")
-  into links to the App Store page, with the words "Download on the App Store"; and the "Coming soon to Google
-  Play" buttons (data-store="android") into links to the Play page, with the words "Get it on Google Play".
+  STORE LINKS: iOS is live (2026-11-13): the data-store="ios" links go to https://apps.apple.com/app/radscan/id6833056812, the hero's as
+  words ("Download on the App Store"), the pricing band's as Apple's official badge (img/app-store-badge.svg, from
+  Apple's marketing tools, unaltered; one badge per page). Still to do: turn the "Coming soon to Google Play"
+  buttons (data-store="android") into links to the Play page, with the words "Get it on Google Play".
 -->
 <style>
 /* Tokens: the app icon's orange on near-black, white type. One theme for the whole page (dark), matching the
@@ -102,6 +103,10 @@ p { margin: 0; }
 .btn-dark { background: var(--ink); color: #fff; }
 .btn-dark:hover { background: #222; }
 .btn .glyph { width: 20px; height: 20px; border-radius: 6px; }
+/* Apple's badge, as supplied: no hover motion or recolouring (Apple's marketing guidelines). */
+.store-badge { display: inline-block; line-height: 0; border-radius: 9px; }
+.store-badge img { height: 54px; width: auto; }
+.store-badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
 /* Device frames */
 .phone { margin: 0; padding: 9px; border-radius: 48px; background: var(--frame);
@@ -312,7 +317,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         <h1 class="reveal">Your SDS200, <span class="accent">in your pocket.</span></h1>
         <p class="lede reveal" style="--d:1">Listen anywhere in the house, control it from the couch, and see what it's hearing. Straight over your own network.</p>
         <div class="ctas reveal" style="--d:2">
-          <a class="btn btn-primary only-ios" href="#pricing" data-store="ios">Coming soon to the App Store</a>
+          <a class="btn btn-primary only-ios" href="https://apps.apple.com/app/radscan/id6833056812" data-store="ios">Download on the App Store</a>
           <a class="btn btn-primary only-android" href="#pricing" data-store="android">Coming soon to Google Play</a>
           <a class="btn btn-ghost" href="#features">See what it does</a>
         </div>
@@ -431,7 +436,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         <p class="terms reveal" style="--d:1">Every feature works during the trial. After that, one purchase unlocks RadScan for good, on your <span class="only-ios">iPhone and iPad</span><span class="only-android">Android phone and tablet</span>.</p>
         <p class="nos reveal" style="--d:2">No subscription. No ads. No tracking.</p>
         <div class="ctas reveal" style="--d:3">
-          <span class="btn btn-dark only-ios" data-store="ios"><img class="glyph" src="img/icon-128.png" alt="">Coming soon to the App Store</span>
+          <a class="store-badge only-ios" href="https://apps.apple.com/app/radscan/id6833056812" data-store="ios"><img src="img/app-store-badge.svg" width="162" height="54" alt="Download on the App Store"></a>
           <span class="btn btn-dark only-android" data-store="android"><img class="glyph" src="img/icon-128.png" alt="">Coming soon to Google Play</span>
         </div>
       </div>
@@ -469,7 +474,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
   <div class="wrap">
     <div>
       <a class="brand" href="./"><img src="img/icon-128.png" alt="" width="32" height="32">RadScan</a>
-      <p class="legal">RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are trademarks of their owner. <span class="only-ios">Apple, iPhone, iPad, AirPods, CarPlay and App Store are trademarks of Apple Inc.</span><span class="only-android">Google Play, Android and Android Auto are trademarks of Google LLC.</span></p>
+      <p class="legal">RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are trademarks of their owner. <span class="only-ios">Apple, the Apple logo, iPhone, iPad, AirPods, CarPlay and App Store are trademarks of Apple Inc.</span><span class="only-android">Google Play, Android and Android Auto are trademarks of Google LLC.</span></p>
     </div>
     <nav aria-label="Footer">
       <a href="support.html" data-android="support-android.html">Support</a>
