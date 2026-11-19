@@ -1,14 +1,57 @@
-:root { --bg: #ffffff; --text: #1c1c1e; --muted: #5f6368; --rule: #e5e5ea; --accent: #0a7aff; }
-@media (prefers-color-scheme: dark) { :root { --bg: #000000; --text: #f2f2f7; --muted: #a1a1a6; --rule: #2c2c2e; --accent: #4aa3ff; } }
-body { background: var(--bg); color: var(--text); font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; }
-main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
-h1 { font-size: 30px; margin: 0 0 4px; }
-h2 { font-size: 20px; margin: 32px 0 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
+/* The privacy and support pages (privacy.html, privacy-android.html, support.html, support-android.html), in the
+   front page's look: Archivo and Martian Mono from fonts/, RadScan orange on near-black. These pages also open
+   inside the apps, so unlike the front page they follow the device: dark by default, light when the device is light
+   (with a deeper orange there, so links stay readable on white). Their HTML is plain on purpose; everything is here. */
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap;
+  src: url("fonts/archivo-latin.woff2") format("woff2"); }
+@font-face { font-family: "Martian Mono"; font-style: normal; font-weight: 300 700; font-stretch: 75% 112.5%; font-display: swap;
+  src: url("fonts/martian-mono-latin.woff2") format("woff2"); }
+
+:root {
+  color-scheme: dark light;
+  --bg: #08090c; --text: #f4f4f6; --muted: #a6a6ad; --line: rgba(255, 255, 255, .1);
+  --orange: #ff7a1a; --link: #ff9330; --ink: #08090c;
+  --sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: "Martian Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root { --bg: #f7f7f8; --text: #141519; --muted: #565a63; --line: rgba(0, 0, 0, .12); --orange: #e8650c; --link: #b54a00; --ink: #ffffff; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.62 var(--sans); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--orange); color: var(--ink); }
+main { width: min(720px, 100% - 32px); margin: 0 auto; padding: 48px 0 80px; }
+
+/* The app icon heads every page (decorative, so it lives here rather than in the HTML). */
+main::before { content: ""; display: block; width: 44px; height: 44px; margin-bottom: 28px; border-radius: 10px;
+  background: url("img/icon-128.png") center / cover no-repeat; }
+
+h1 { margin: 0 0 12px; font-weight: 800; font-stretch: 125%; font-size: clamp(1.9rem, 6vw, 2.9rem); line-height: 1.04;
+  letter-spacing: -.02em; text-wrap: balance; }
+/* Each section opens on a hairline with a short orange tick at its left end: the front page's tuning cursor. */
+h2 { position: relative; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid var(--line);
+  font-weight: 750; font-stretch: 112%; font-size: 1.32rem; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+h2::before { content: ""; position: absolute; left: 0; top: -1px; width: 28px; height: 2px; background: var(--orange); }
+
 p, li { color: var(--text); }
-.muted { color: var(--muted); }
-a { color: var(--accent); }
-ul { padding-left: 20px; }
-ol { padding-left: 22px; }
-ol > li { margin-bottom: 14px; }
-li ul { margin: 8px 0; }
-footer { margin-top: 48px; font-size: 14px; color: var(--muted); }
+p { margin: 0 0 14px; }
+.muted { color: var(--muted); font-size: 1.08rem; }
+h1 + .muted { margin-bottom: 28px; }
+strong { font-weight: 650; }
+a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 3px; }
+
+ul, ol { margin: 0 0 16px; padding-left: 22px; }
+ol { padding-left: 32px; }
+li { margin-bottom: 8px; padding-left: 4px; }
+ul > li::marker { color: var(--orange); }
+ol > li { margin-bottom: 18px; }
+ol > li::marker { color: var(--orange); font: 600 .9em var(--mono); }
+li ul { margin: 10px 0; }
+
+footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.6; color: var(--muted); }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }
