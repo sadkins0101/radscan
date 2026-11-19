@@ -9,30 +9,74 @@
 <body>
 <main>
 <h1>RadScan Support</h1>
-<p class="muted">Remote control and live audio for the Uniden SDS200, on iPhone and iPad.</p>
+<p class="muted">Remote control and live audio for the Uniden SDS200, on iPhone, iPad and Mac (Apple silicon).</p>
 
-<p>Questions, problems or ideas: <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>. Say which iPhone or iPad, its iOS
-version, and your scanner's firmware (RadScan shows it under Settings › Scanners).</p>
-<p>The app's own Help (Settings › Help) covers every screen in more detail.</p>
+<h2>Start in the app: two steps to a fix</h2>
+<p>RadScan has its own support tools, under <strong>Help › Support</strong>. They get to the cause much faster
+than a description alone.</p>
+<ol>
+<li><strong>Run the Connection Test</strong> (Help › Connection Test, or Settings › Connection Test while
+connected). In about 10 seconds it measures how quickly your scanner answers RadScan and how well its audio reaches
+your device: audio start, audio lost, longest audio gap, audio jitter, command response and commands unanswered.
+It rates the connection Excellent, Good, Fair or Poor, and says what might be wrong. The scanner keeps scanning
+while it runs.</li>
+<li><strong>Write to us with Contact Support</strong> (Help › Contact Support). Tell us what's going wrong, and
+choose what goes with your email. Each item is a switch:
+<ul>
+<li><strong>App and device:</strong> RadScan's version, your device and its system version.</li>
+<li><strong>Scanner:</strong> its model, its firmware, and whether RadScan is connected.</li>
+<li><strong>Last connection test:</strong> its rating and numbers.</li>
+<li><strong>Connection log:</strong> the most recent events between RadScan and your scanner (connecting, the
+audio starting and stopping, messages shown). It includes your scanner's and your device's addresses on your own
+network.</li>
+</ul>
+<strong>Preview What's Sent</strong> shows exactly what's in it. Nothing leaves your device until you send the
+email yourself, and it goes only to <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>. If Mail isn't
+set up, RadScan lets you share the report or copy it into an email instead.</li>
+</ol>
+<p>You can also write to <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a> directly. Say which iPhone,
+iPad or Mac, its system version, and your scanner's firmware (Settings › Scanners). The app's own Help covers every
+screen in more detail.</p>
 
 <h2>What you need</h2>
 <ul>
-<li>A Uniden SDS200 connected to your network (Ethernet), and your iPhone or iPad on the same network.</li>
-<li>iOS or iPadOS 18 or later.</li>
+<li>A Uniden SDS200 connected to your network (Ethernet), and your device on the same network.</li>
+<li>An iPhone or iPad with iOS or iPadOS 18 or later, or a Mac with Apple silicon (M1 or later) with macOS 15 or
+later. Intel-based Macs aren't supported.</li>
 <li>For the waterfall: Uniden's Waterfall upgrade on the scanner.</li>
 </ul>
 
 <h2>RadScan can't find my scanner</h2>
 <ul>
-<li>Join the same Wi-Fi network as the scanner.</li>
-<li>Allow Local Network access: iPhone Settings › Apps › RadScan › Local Network.</li>
-<li>Or add it by address: Settings › Scanners › Add Scanner. The scanner shows its address under Menu › Settings › LAN Settings.</li>
+<li>Join the same network as the scanner.</li>
+<li>Allow Local Network access. On iPhone and iPad: Settings › Apps › RadScan › Local Network. On a Mac: System
+Settings › Privacy &amp; Security › Local Network.</li>
+<li>Or add it by address: Settings › Scanners › Add Scanner. The scanner shows its address under Menu › Settings ›
+LAN Settings.</li>
 </ul>
 
-<h2>No audio, or "Audio in use or stuck"</h2>
-<p>The SDS200 streams to one listener at a time. If another phone or app is listening, stop it there first. If nothing
-else is listening, the scanner's audio server may be stuck: RadScan can reboot the scanner to clear it (Settings ›
-Audio › Reboot scanner if audio gets stuck), or reboot it from the scanner itself.</p>
+<h2>No audio, or "Can't get the scanner's audio"</h2>
+<p>The SDS200 supports only one audio connection at a time. That's a limit of the scanner, not RadScan. If another
+phone, tablet or computer is listening, RadScan waits its turn and starts the audio as soon as it's free. If the
+other device has RadScan too, Listen says which one and offers to take over its audio.</p>
+<p>If nothing else is listening, the scanner's audio server may be stuck. RadScan can restart the scanner to clear it
+(Settings › Audio › Reboot scanner if audio gets stuck), or you can restart it on the scanner itself. The Connection
+Test tells you whether another device has the audio.</p>
+
+<h2>RadScan on a Mac</h2>
+<ul>
+<li>It runs on Macs with Apple silicon (M1 or later) with macOS 15 or later. Intel-based Macs aren't supported.</li>
+<li>Get it from the Mac App Store, where it's listed under iPhone &amp; iPad Apps. Bought RadScan on your iPhone or
+iPad? The same purchase works on the Mac. If it doesn't show as unlocked, use Settings › RadScan › Restore
+Purchase.</li>
+<li>Closing the window keeps the scanner playing, as Music does. Click RadScan in the Dock to bring it back, and quit
+it (&#8984;Q) to stop.</li>
+<li>The Scanner menu in the menu bar has the keyboard shortcuts: &#8984;L to listen, &#8984;&larr; and &#8984;&rarr;
+for Prev and Next, &#8984;&darr; to Skip.</li>
+<li>While RadScan waits its turn behind another device, keep it running until that device stops. Quitting then
+leaves the scanner's audio stuck until the scanner restarts.</li>
+<li>Live Activities, CarPlay and the Lock Screen controls are for iPhone and iPad.</li>
+</ul>
 
 <h2>The waterfall says my scanner needs an upgrade</h2>
 <p>Every SDS200 has the waterfall built in, but Uniden keeps it switched off until the scanner has their Waterfall
@@ -48,7 +92,8 @@ The Virtual Scanner is always free. Bought it before, or on another device? Sett
 first screen or from Settings › Scanners.</p>
 
 <footer>RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are
-trademarks of their owner. <a href="privacy.html">Privacy Policy</a></footer>
+trademarks of their owner. Apple, iPhone, iPad, Mac and macOS are trademarks of Apple Inc.
+<a href="privacy.html">Privacy Policy</a></footer>
 </main>
 </body>
 </html>

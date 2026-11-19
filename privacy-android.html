@@ -9,15 +9,18 @@
 <body>
 <main>
 <h1>RadScan for Android Privacy Policy</h1>
-<p class="muted">Effective November 11, 2026</p>
+<p class="muted">Effective November 18, 2026</p>
 
-<p>RadScan doesn't collect, sell or share your data. There are no accounts, ads, analytics or tracking, and nothing is
-sent to the developer. This page says what the app does with information, in plain words. It matches the Privacy page
+<p>RadScan doesn't sell or share your data. There are no accounts, ads, analytics or tracking. The only thing sent to
+the developer is a scrambled code for your device, when the free trial starts (Purchases, below), unless you email
+support yourself. This page says what the app does with information, in plain words. It matches the Privacy page
 inside the app (Settings › Privacy).</p>
 
 <h2>Your scanner</h2>
 <p><strong>Local network.</strong> RadScan talks directly to your scanner on your own network: its controls, its audio
-and its FTP server. Nothing passes through any other server.</p>
+and its FTP server. Nothing passes through any other server. While it listens, RadScan tells other copies of RadScan
+on your network which scanner it's listening to, under this device's name, so one can take over the audio. That stays
+on your network.</p>
 <p><strong>Scanner FTP logins.</strong> Stored on your device, encrypted with a key kept in the Android Keystore, and
 used only to reach your scanner. FTP isn't encrypted, so use it on your own network.</p>
 
@@ -34,14 +37,23 @@ Only town names, callsigns from your scanner's favorites and a broad search area
 device.</p>
 
 <h2>On your device</h2>
-<p><strong>Recordings, backups and settings</strong> are kept on your device only. They leave it only when you share
-them or save a copy somewhere yourself.</p>
+<p><strong>Recordings</strong> are kept on your device only. They leave it only when you share them or save a copy
+somewhere yourself.</p>
+<p><strong>Settings and scanner backups</strong> are kept on your device. If Android's backup is on for your device,
+your settings (saved scanners, scan profiles, alerts) and your scanner backups are included in it, in your own Google
+account, so a new device or a reinstall gets them back. FTP passwords and recordings are never included.</p>
 <p><strong>Alerts</strong> are local notifications from your device. Nothing goes through a push server.</p>
+<p><strong>Connection log.</strong> RadScan notes what happens between it and your scanner (connecting, audio starting
+and stopping, connection test results), kept on your device. It leaves only inside a support email you send from
+Help › Contact Support, where you choose what goes with it and can read it first.</p>
 <p><strong>Purchases.</strong> The unlock is handled by Google through Google Play. RadScan never sees your payment
-details. When your free trial began is kept on your device.</p>
+details. So that reinstalling RadScan doesn't start the free trial again, the date it began is kept on your device, by
+Google Play services (with your device's backup, if it's on), and by RadScan's trial service. The trial service gets
+only that date and a scrambled code made from your device's Android ID, which can't be turned back into it or linked
+to you. That's why starting the trial needs the internet.</p>
 
 <h2>Children</h2>
-<p>RadScan isn't directed at children and collects no information from anyone.</p>
+<p>RadScan isn't directed at children, and knowingly collects nothing about them.</p>
 
 <h2>Changes and contact</h2>
 <p>If this policy changes, the new version will be posted here with a new date. Questions:
