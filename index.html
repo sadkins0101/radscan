@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RadScan: your SDS200 on iPhone, iPad, Mac and Android</title>
-<meta name="description" content="Listen to your Uniden SDS200 anywhere in the house, control it from the couch, and see what it's hearing. Free for 5 days, then one purchase. No subscription.">
+<title>RadScan: your SDS200 or Icom radio on iPhone, iPad, Mac and Android</title>
+<meta name="description" content="Listen to your Uniden SDS200 or Icom radio anywhere in the house, control it from the couch, and see what it's hearing. Free to evaluate for 5 days, then one purchase. No subscription.">
 <meta name="theme-color" content="#08090c">
 <meta property="og:type" content="website">
-<meta property="og:title" content="RadScan: your SDS200 on iPhone, iPad, Mac and Android">
-<meta property="og:description" content="Live audio, remote control, a waterfall and more for the Uniden SDS200. One price, every feature, no subscription.">
+<meta property="og:title" content="RadScan: your SDS200 or Icom radio on iPhone, iPad, Mac and Android">
+<meta property="og:description" content="Live audio, remote control, a waterfall and more for the Uniden SDS200 and Icom IC-705 and IC-9700. One price, every feature, no subscription.">
 <meta property="og:url" content="https://radscan.enetworx.net/">
 <meta property="og:image" content="https://radscan.enetworx.net/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -290,6 +290,19 @@ p { margin: 0; }
 }
 @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(.2); opacity: .9; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
 
+/* Icom radios: the simple screen and the waterfall side by side, then what comes with them as a spec sheet. */
+.icom { padding: clamp(120px, 17vh, 210px) 0; border-top: 1px solid var(--line); }
+.icom-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(40px, 6vw, 112px); align-items: center; }
+.icom .body { margin-top: 24px; }
+.icom h3 { margin-top: clamp(40px, 6vh, 64px); font-size: clamp(1.6rem, 2.6vw, 2.5rem); color: var(--orange); }
+.icom h3 + .body { margin-top: 18px; }
+.icom .stage { padding: 0 0 80px; }
+.icom-list { margin: clamp(40px, 6vh, 72px) 0 0; padding: 32px 0 0; list-style: none; border-top: 1px solid var(--line-2);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
+.icom-list strong { display: block; margin-bottom: 10px; font-weight: 800; font-stretch: 112%; letter-spacing: -.01em; font-size: 1.12rem; line-height: 1.15; }
+.icom-list span { color: var(--muted); font-size: 1rem; line-height: 1.55; display: block; }
+.icom .note { margin-top: 40px; font: 400 12.5px/1.6 var(--mono); font-stretch: 87.5%; color: var(--muted); max-width: 72ch; }
+
 /* iPad and tablets: the words hold still while the console goes by. */
 .ipad-sec { padding: clamp(120px, 16vh, 200px) 0; border-top: 1px solid var(--line); }
 .ipad-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 112px); align-items: start; }
@@ -372,6 +385,9 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
   .def-map { order: 2; } .stage { order: 1; } .def-trunk { order: 3; }
   .ipad-grid, .price-row, .needs-grid { grid-template-columns: 1fr; }
   .ipad-text { position: static; }
+  .icom-grid { grid-template-columns: 1fr; }
+  .icom .stage { justify-content: center; padding-bottom: 32px; }
+  .icom-list { grid-template-columns: 1fr 1fr; }
   .ipad { justify-self: center; }
   .mac-cols { grid-template-columns: 1fr 1fr; }
   .mac-cols .fine { grid-column: 1 / -1; }
@@ -418,6 +434,7 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
   .stage { padding: 24px 0 48px; }
   .rings { transform: scale(.55); }
   .mac-cols { grid-template-columns: 1fr; }
+  .icom-list { grid-template-columns: 1fr; }
   .spec li { grid-template-columns: 1fr; gap: 6px; }
   .price h2 { font-size: 7.3vw; }
   .keys { grid-template-columns: auto 1fr auto 1fr; }
@@ -440,6 +457,7 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
     <nav class="nav-links" aria-label="Sections">
       <a href="#features">Features</a>
       <a href="#waterfall">Waterfall</a>
+      <a href="#icom">Icom</a>
       <a href="#ipad" class="only-ios">iPad</a>
       <a href="#mac" class="only-ios">Mac</a>
       <a href="#ipad" class="only-android">Tablets</a>
@@ -482,7 +500,7 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
   <section class="statement">
     <div class="wrap">
       <p class="big display"><span class="ph">Pay once.</span> <span class="ph">Keep it.</span> <span class="ph">Use all of it.</span> <span class="just">Every feature, one price, for good.</span></p>
-      <p class="body reveal">There's no monthly plan and no premium tier. RadScan talks straight to your SDS200 over your own network, and nothing about you is collected.</p>
+      <p class="body reveal">There's no monthly plan and no premium tier. RadScan talks straight to your radio over your own network, and nothing about you is collected.</p>
     </div>
   </section>
 
@@ -583,6 +601,31 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
     </div>
   </section>
 
+  <section class="icom" id="icom">
+    <div class="wrap icom-grid">
+      <div class="icom-text">
+        <p class="eyebrow reveal">New: Icom radios</p>
+        <h2 class="display h2 reveal">Easy listening for your ham radio.</h2>
+        <p class="body reveal" style="--d:1">A simple, scanner-like interface for your Icom radio. Choose what you'd like to hear, tap Listen, and RadScan scans it and stops where someone's talking. Hold, Skip, Avoid and the squelch are right there. It's for when you'd rather listen than operate, from the couch or anywhere in the house.</p>
+        <h3 class="display reveal">Then open the waterfall.</h3>
+        <p class="body reveal" style="--d:1">Simple doesn't mean limited to the frequencies you've programmed. The waterfall is the radio's own spectrum scope, live on your screen: see everything on the band at a glance, tap a signal to hear it, and touch and hold for the magnifier to land on it exactly. Change the band, the width and the mode, and go looking.</p>
+      </div>
+      <div class="stage reveal only-ios" style="--d:1">
+        <figure class="phone"><img src="img/iphone-08-icom.webp" width="780" height="1696" loading="lazy" alt="RadScan listening to a ham repeater on an Icom radio, with squelch, Hold, Skip, Avoid, Tune, WX, Waterfall and Map."></figure>
+        <figure class="phone"><img src="img/iphone-09-icom-waterfall.webp" width="780" height="1696" loading="lazy" alt="An Icom radio's spectrum scope as RadScan's waterfall, tuned to a repeater on 70 centimeters that is on the air."></figure>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="icom-list">
+        <li class="reveal"><strong>Lists, ready to scan</strong> <span>Ham calling and simplex, aviation, marine, railroad and more: whatever your radio receives. Import your own from CHIRP files, or search 2 meters and 70 centimeters. NOAA weather is at a tap.</span></li>
+        <li class="reveal" style="--d:1"><strong>The radio's own controls</strong> <span>Noise reduction, auto notch, noise blanker, RF gain, preamp and attenuator, whichever your radio has, set from your phone.</span></li>
+        <li class="reveal" style="--d:2"><strong>A map of what's near you</strong> <span>Airports, NOAA weather transmitters and your repeaters, lit when they're on the air.</span></li>
+        <li class="reveal" style="--d:3"><strong>Just listening</strong> <span>Enjoy your ham radio from anywhere in the house. No transmitting, and when you're done, your radio is left the way RadScan found it.</span></li>
+      </ul>
+      <p class="note reveal">Works with the Icom IC-705 and IC-9700 over your own network. RadScan offers what your radio itself can do: its bands, modes, scope and settings, so features differ from radio to radio. No radio handy? The Virtual Icom Radio is simulated inside RadScan, and it's always free.</p>
+    </div>
+  </section>
+
   <section class="ipad-sec" id="ipad">
     <div class="wrap ipad-grid">
       <div class="ipad-text">
@@ -615,10 +658,10 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
   <section class="price" id="pricing">
     <div class="price-trace field" id="price-field" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap">
-      <h2 class="display reveal">Free for 5 days.<br><span class="accent">Then $29.99, once.</span></h2>
+      <h2 class="display reveal">Evaluate for 5 days.<br><span class="accent">Then $29.99, once.</span></h2>
       <div class="price-row">
         <div>
-          <p class="terms reveal" style="--d:1">Every feature works during the trial. After that, one purchase unlocks RadScan for good, on your <span class="only-ios">iPhone, iPad and Mac</span><span class="only-android">Android phone and tablet</span>.</p>
+          <p class="terms reveal" style="--d:1">Every feature works with your own radio during your evaluation, at no charge. After that, buy RadScan once and it's yours, on your <span class="only-ios">iPhone, iPad and Mac</span><span class="only-android">Android phone and tablet</span>.</p>
           <p class="nos reveal" style="--d:2">No subscription. No ads. No tracking.</p>
           <div class="ctas reveal" style="--d:3">
             <a class="store-badge only-ios" href="https://apps.apple.com/app/radscan/id6833056812" data-store="ios"><img src="img/app-store-badge.svg" width="162" height="54" alt="Download on the App Store"></a>
@@ -626,8 +669,8 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
           </div>
         </div>
         <aside class="virtual reveal" style="--d:2">
-          <h3>No scanner handy?</h3>
-          <p>The Virtual Scanner is an SDS200 simulated inside RadScan, with fictional channels and live audio. Every feature works on it, and it's always free.</p>
+          <h3>No radio handy?</h3>
+          <p>The Virtual Scanner is an SDS200 and the Virtual Icom Radio an IC-705, simulated inside RadScan with fictional channels and live audio. They're always free.</p>
         </aside>
       </div>
       <div class="why reveal">
@@ -643,10 +686,11 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
         <h2 class="display h2 reveal">What you need.</h2>
         <ul class="spec">
           <li class="reveal" style="--d:1"><strong>A Uniden SDS200</strong> <span>connected to your network by Ethernet.</span></li>
+          <li class="reveal" style="--d:1"><strong>Or an Icom IC-705 or IC-9700</strong> <span>on your network (the IC-705 by Wi-Fi, the IC-9700 by Ethernet), with its network control turned on and a network user and password set.</span></li>
           <li class="reveal only-ios" style="--d:2"><strong>An iPhone or iPad</strong> <span>with iOS 18 or later, on the same network.</span></li>
           <li class="reveal only-ios" style="--d:2"><strong>Or a Mac with Apple silicon</strong> <span>(M1 or later) with macOS 15 or later, on the same network. Intel-based Macs aren't supported.</span></li>
           <li class="reveal only-android" style="--d:2"><strong>An Android phone or tablet</strong> <span>with Android 10 or later, on the same network.</span></li>
-          <li class="reveal" style="--d:3"><strong>For the waterfall:</strong> <span>Uniden's Waterfall upgrade on the scanner.</span></li>
+          <li class="reveal" style="--d:3"><strong>For the SDS200's waterfall:</strong> <span>Uniden's Waterfall upgrade on the scanner. An Icom radio needs nothing more.</span></li>
         </ul>
       </div>
       <div class="side">
@@ -654,7 +698,7 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
         <p class="reveal" style="--d:1">No account, no analytics, no tracking. RadScan doesn't collect anything about you. <a href="privacy.html" data-android="privacy-android.html">Read the privacy policy</a>.</p>
         <h3 class="reveal">Questions?</h3>
         <p class="reveal" style="--d:1">The <a href="support.html" data-android="support-android.html">support page</a> covers setup and the common snags, or write to <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>.</p>
-        <p class="reveal laws" style="--d:2">Laws on listening and recording vary by place. Use RadScan responsibly.</p>
+        <p class="reveal laws" style="--d:2">Laws on listening and recording vary by place, and you're responsible for following yours. RadScan only receives: it never makes a radio transmit.</p>
       </div>
     </div>
   </section>
@@ -665,7 +709,7 @@ footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
   <div class="wrap">
     <div>
       <a class="brand" href="./"><img src="img/icon-128.png" alt="" width="32" height="32">RadScan</a>
-      <p class="legal">RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are trademarks of their owner. <span class="only-ios">Apple, the Apple logo, iPhone, iPad, Mac, macOS, AirPods, CarPlay and App Store are trademarks of Apple Inc.</span><span class="only-android">Google Play, Android and Android Auto are trademarks of Google LLC.</span></p>
+      <p class="legal">RadScan is an independent app. It isn't made by, affiliated with, endorsed by or supported by Uniden or Icom. Uniden, SDS200, Icom, IC-705 and IC-9700 are trademarks of their owners, named only to say which radios RadScan works with. <span class="only-ios">Apple, the Apple logo, iPhone, iPad, Mac, macOS, AirPods, CarPlay and App Store are trademarks of Apple Inc.</span><span class="only-android">Google Play, Android and Android Auto are trademarks of Google LLC.</span></p>
     </div>
     <nav aria-label="Footer">
       <a href="support.html" data-android="support-android.html">Support</a>

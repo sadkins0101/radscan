@@ -10,48 +10,54 @@
 <body>
 <main>
 <h1>RadScan for Android Privacy Policy</h1>
-<p class="muted">Effective November 18, 2026</p>
+<p class="muted">Effective November 22, 2026</p>
 
 <p>RadScan doesn't sell or share your data. There are no accounts, ads, analytics or tracking. The only thing sent to
-the developer is a scrambled code for your device, when the free trial starts (Purchases, below), unless you email
+the developer is a scrambled code for your device, when the 5-day evaluation starts (Purchases, below), unless you email
 support yourself. This page says what the app does with information, in plain words. It matches the Privacy page
 inside the app (Settings › Privacy).</p>
 
-<h2>Your scanner</h2>
-<p><strong>Local network.</strong> RadScan talks directly to your scanner on your own network: its controls, its audio
-and its FTP server. Nothing passes through any other server. While it listens, RadScan tells other copies of RadScan
+<h2>Your scanner or radio</h2>
+<p><strong>Local network.</strong> RadScan talks directly to your scanner or Icom radio on your own network: its controls, its audio
+and (a scanner's) FTP server. Nothing passes through any other server. While it listens, RadScan tells other copies of RadScan
 on your network which scanner it's listening to, under this device's name, so one can take over the audio. That stays
 on your network.</p>
 <p><strong>Scanner FTP logins.</strong> Stored on your device, encrypted with a key kept in the Android Keystore, and
 used only to reach your scanner. FTP isn't encrypted, so use it on your own network.</p>
+<p><strong>Icom radio logins.</strong> An Icom radio's network user is saved with RadScan's settings, which your
+device's backup includes. Its password stays on your device only, encrypted with a key kept in the Android Keystore, and
+is never backed up. They're used only to log in to that radio, which is told a name for your device, like RadScan-1A2B. The radio's login isn't encrypted, so use it on your own network.</p>
 
 <h2>Location</h2>
-<p>RadScan reads your device's location only when you tap Move Scanner Here, while the app is open: once, to show you
-on the map and to send it once to your scanner. It isn't stored, it isn't sent anywhere else, and it's never read in
+<p>RadScan reads your device's location only when you tap Move Scanner Here, or open an Icom radio's map that has
+airports or weather transmitters to show near you, while the app is open: once, to show you on the map and (Move
+Scanner Here) to send it once to your scanner. It isn't stored, it isn't sent anywhere else, and it's never read in
 the background.</p>
+<p><strong>Airports and weather transmitters on the map.</strong> They come with RadScan, from the FAA's and the
+National Weather Service's public lists. The map picks the ones near you on your device; nothing is looked up.</p>
 <p><strong>The map.</strong> The map's pictures come from OpenStreetMap. To draw them, your device asks
 OpenStreetMap's servers for the area you're looking at; they are kept on your device for a while so they needn't be
 fetched again.</p>
 <p><strong>Ham repeaters on the map.</strong> To place repeaters, RadScan looks up their towns with your device's own
 geocoding service (Google's, on most devices) and, for some, the callsign's public FCC license address at callook.info.
-Only town names, callsigns from your scanner's favorites and a broad search area are sent. Results are kept on your
+Only town names, callsigns from your scanner's favorites or your CHIRP files and a broad search area are sent. Results are kept on your
 device.</p>
 
 <h2>On your device</h2>
 <p><strong>Recordings</strong> are kept on your device only. They leave it only when you share them or save a copy
 somewhere yourself.</p>
 <p><strong>Settings and scanner backups</strong> are kept on your device. If Android's backup is on for your device,
-your settings (saved scanners, scan profiles, alerts) and your scanner backups are included in it, in your own Google
-account, so a new device or a reinstall gets them back. FTP passwords and recordings are never included.</p>
+your settings (saved scanners and radios, scan profiles, alerts) and your scanner backups are included in it, in your own Google
+account, so a new device or a reinstall gets them back. FTP and Icom radio passwords and recordings are never included.</p>
 <p><strong>Alerts</strong> are local notifications from your device. Nothing goes through a push server.</p>
 <p><strong>Connection log.</strong> RadScan notes what happens between it and your scanner (connecting, audio starting
 and stopping, connection test results), kept on your device. It leaves only inside a support email you send from
 Help › Contact Support, where you choose what goes with it and can read it first.</p>
-<p><strong>Purchases.</strong> The unlock is handled by Google through Google Play. RadScan never sees your payment
-details. So that reinstalling RadScan doesn't start the free trial again, the date it began is kept on your device, by
-Google Play services (with your device's backup, if it's on), and by RadScan's trial service. The trial service gets
-only that date and a scrambled code made from your device's Android ID, which can't be turned back into it or linked
-to you. That's why starting the trial needs the internet.</p>
+<p><strong>Purchases.</strong> Buying RadScan is handled by Google through Google Play. RadScan never sees your payment
+details. So that reinstalling RadScan doesn't start the 5-day evaluation again, the date it began is kept on your
+device, by Google Play services (with your device's backup, if it's on), and by RadScan's evaluation service. That
+service gets only that date and a scrambled code made from your device's Android ID, which can't be turned back into
+it or linked to you. That's why starting the evaluation needs the internet.</p>
 
 <h2>Children</h2>
 <p>RadScan isn't directed at children, and knowingly collects nothing about them.</p>
@@ -60,8 +66,7 @@ to you. That's why starting the trial needs the internet.</p>
 <p>If this policy changes, the new version will be posted here with a new date. Questions:
 <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>.</p>
 
-<footer>RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are
-trademarks of their owner. Map data © OpenStreetMap contributors. <a href="./?android">RadScan for Android</a></footer>
+<footer>RadScan is an independent app. It isn't made by, affiliated with, endorsed by or supported by Uniden or Icom. Uniden, SDS200, Icom, IC-705 and IC-9700 are trademarks of their owners, named only to say which radios RadScan works with. Map data © OpenStreetMap contributors. <a href="./?android">RadScan for Android</a></footer>
 </main>
 </body>
 </html>

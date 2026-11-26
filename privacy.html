@@ -16,21 +16,27 @@
 sent to the developer unless you email support yourself. This page says what the app does with information, in plain words. It matches the Privacy page
 inside the app (Settings › Privacy).</p>
 
-<h2>Your scanner</h2>
-<p><strong>Local network.</strong> RadScan talks directly to your scanner on your own network: its controls, its audio
-and its FTP server. Nothing passes through any other server. While it listens, RadScan tells other copies of RadScan
+<h2>Your scanner or radio</h2>
+<p><strong>Local network.</strong> RadScan talks directly to your scanner or Icom radio on your own network: its controls, its audio
+and (a scanner's) FTP server. Nothing passes through any other server. While it listens, RadScan tells other copies of RadScan
 on your network which scanner it's listening to, under this device's name, so one can take over the audio. That stays
 on your network.</p>
 <p><strong>Scanner FTP logins.</strong> Stored in your device's Keychain and used only to reach your scanner. FTP isn't
 encrypted, so use it on your own network.</p>
+<p><strong>Icom radio logins.</strong> The radio's network user is kept on your device, and its password in your
+device's Keychain. They're used only to log in to your radio, which is told a name for your device, like RadScan-1A2B.
+The radio's login isn't encrypted, so use it on your own network.</p>
 
 <h2>Location</h2>
 <p>RadScan uses your device's location only while the app is open: to show you on the map, once you've allowed it, and
-when you tap Move Scanner Here, to send it once to your scanner. It isn't stored, it isn't sent anywhere else, and it's
-never read in the background.</p>
+when you tap Move Scanner Here, to send it once to your scanner. It isn't stored or sent anywhere else, but for a broad
+area to place repeaters (below), and it's never read in the background.</p>
+<p><strong>Airports and weather transmitters on the map.</strong> They come with RadScan, from the FAA's and the National
+Weather Service's public lists. The map picks the ones near you on your device; nothing is looked up.</p>
 <p><strong>Ham repeaters on the map.</strong> To place repeaters, RadScan looks up their towns with Apple Maps and, for
 some, the callsign's public FCC license address at callook.info. Only town names, callsigns from your scanner's
-favorites and a broad search area are sent. Results are kept on your device.</p>
+favorites or your CHIRP files and a broad search area (where you are to about 35 miles, or the area of your scanner's
+favorites) are sent. Results are kept on your device.</p>
 
 <h2>On your device</h2>
 <p><strong>Recordings, backups and settings</strong> are kept on your device only. They leave it only when you share
@@ -39,7 +45,7 @@ them.</p>
 and stopping, connection test results), kept on your device. It leaves only inside a support email you send from
 Help › Contact Support, where you choose what goes with it and can read it first.</p>
 <p><strong>Alerts</strong> are local notifications from your device. Nothing goes through a push server.</p>
-<p><strong>Purchases.</strong> The free trial and the unlock are handled by Apple through the App Store. RadScan never
+<p><strong>Purchases.</strong> The 5-day evaluation and buying RadScan are handled by Apple through the App Store. RadScan never
 sees your payment details.</p>
 
 <h2>Children</h2>
@@ -49,8 +55,7 @@ sees your payment details.</p>
 <p>If this policy changes, the new version will be posted here with a new date. Questions:
 <a href="mailto:radscan@enetworx.net">radscan@enetworx.net</a>.</p>
 
-<footer>RadScan is an independent app. It isn't made, endorsed or supported by Uniden. Uniden and SDS200 are
-trademarks of their owner.</footer>
+<footer>RadScan is an independent app. It isn't made by, affiliated with, endorsed by or supported by Uniden or Icom. Uniden, SDS200, Icom, IC-705 and IC-9700 are trademarks of their owners, named only to say which radios RadScan works with.</footer>
 </main>
 </body>
 </html>
